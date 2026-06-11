@@ -59,12 +59,12 @@ export function AlertFeed({ initialAlerts }: { initialAlerts: Alert[] }) {
 
       <div className="mt-4 space-y-3">
         {visible.length === 0 ? (
-          <div className="rounded-xl border border-mist-200 bg-white p-8 text-center text-sm text-mist-600">
+          <div className="rounded-2xl border border-mist-200 bg-white p-8 text-center text-sm text-mist-600">
             {filter === "active" ? "No active alerts — pipeline looks healthy." : `No ${filter} alerts.`}
           </div>
         ) : (
           visible.map((a) => (
-            <div key={a.id} className="rounded-xl border border-mist-200 bg-white p-4">
+            <div key={a.id} className="rounded-2xl border border-mist-200 bg-white p-4">
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div className="min-w-0">
                   <div className="flex flex-wrap items-center gap-2">
@@ -84,20 +84,20 @@ export function AlertFeed({ initialAlerts }: { initialAlerts: Alert[] }) {
                   ) : null}
                 </div>
                 <div className="flex shrink-0 items-center gap-2 text-sm">
-                  <Link href={`/deals/${a.dealId}`} className="rounded-lg bg-navy-800 px-3 py-1.5 text-white hover:bg-navy-700">
+                  <Link href={`/deals/${a.dealId}`} className="rounded-full bg-navy-800 px-3.5 py-1.5 text-white hover:bg-navy-700">
                     View deal
                   </Link>
                   {a.status === "active" ? (
                     <>
-                      <button onClick={() => update(a.id, "snoozed")} className="rounded-lg border border-mist-300 px-3 py-1.5 hover:border-navy-400">
+                      <button onClick={() => update(a.id, "snoozed")} className="rounded-full border border-mist-300 px-3.5 py-1.5 hover:border-navy-400">
                         Snooze 7d
                       </button>
-                      <button onClick={() => update(a.id, "dismissed")} className="rounded-lg border border-mist-300 px-3 py-1.5 text-mist-600 hover:border-red-300 hover:text-red-600">
+                      <button onClick={() => update(a.id, "dismissed")} className="rounded-full border border-mist-300 px-3.5 py-1.5 text-mist-600 hover:border-red-300 hover:text-red-600">
                         Dismiss
                       </button>
                     </>
                   ) : (
-                    <button onClick={() => update(a.id, "active")} className="rounded-lg border border-mist-300 px-3 py-1.5 hover:border-navy-400">
+                    <button onClick={() => update(a.id, "active")} className="rounded-full border border-mist-300 px-3.5 py-1.5 hover:border-navy-400">
                       Reactivate
                     </button>
                   )}

@@ -53,7 +53,7 @@ export default async function DealDetailPage({
           )}
           <a
             href={`https://demo.salesforce.invalid/lightning/r/Opportunity/${deal.crmDealId}/view`}
-            className="rounded-lg border border-mist-300 px-3 py-1.5 text-sm text-navy-700 hover:border-navy-400"
+            className="rounded-full border border-mist-300 px-3.5 py-1.5 text-sm text-navy-700 hover:border-navy-400"
             target="_blank"
             rel="noreferrer"
           >
@@ -70,7 +70,7 @@ export default async function DealDetailPage({
           ["Created", shortDate(deal.createdDate)],
           ["Last activity", relativeDays(deal.lastActivity)],
         ].map(([label, value]) => (
-          <div key={label} className="rounded-xl border border-mist-200 bg-white p-4">
+          <div key={label} className="rounded-2xl border border-mist-200 bg-white p-4">
             <div className="text-xs font-medium uppercase tracking-wide text-mist-600">{label}</div>
             <div className="mt-1 font-data text-sm font-semibold">{value}</div>
           </div>
@@ -78,7 +78,7 @@ export default async function DealDetailPage({
       </div>
 
       {dealAlerts.length > 0 ? (
-        <div className="mt-5 rounded-xl border border-red-200 bg-red-50 p-4">
+        <div className="mt-5 rounded-2xl border border-red-200 bg-red-50 p-4">
           <h2 className="font-heading text-sm font-semibold text-red-800">Active alerts</h2>
           <ul className="mt-2 space-y-1.5 text-sm text-red-700">
             {dealAlerts.map((a) => (
@@ -99,7 +99,7 @@ export default async function DealDetailPage({
             </div>
             <div className="mt-3 space-y-2.5">
               {deal.score.factors.map((f) => (
-                <div key={f.name} className="rounded-xl border border-mist-200 bg-white p-4">
+                <div key={f.name} className="rounded-2xl border border-mist-200 bg-white p-4">
                   <div className="flex items-center justify-between">
                     <span className="font-medium">{f.name}</span>
                     <span className={`font-data text-sm font-semibold ${f.impact > 0 ? "text-emerald-600" : f.impact < 0 ? "text-red-600" : "text-mist-500"}`}>
@@ -117,7 +117,7 @@ export default async function DealDetailPage({
         ) : (
           <section>
             <h2 className="text-lg font-semibold">Outcome</h2>
-            <div className="mt-3 rounded-xl border border-mist-200 bg-white p-4 text-sm text-navy-700">
+            <div className="mt-3 rounded-2xl border border-mist-200 bg-white p-4 text-sm text-navy-700">
               This deal closed as <strong>{deal.outcome}</strong> on {shortDate(deal.closeDate)}. Closed deals
               feed the historical benchmarks used to score open pipeline.
             </div>
@@ -126,7 +126,7 @@ export default async function DealDetailPage({
 
         <section aria-labelledby="timeline-heading">
           <h2 id="timeline-heading" className="text-lg font-semibold">Timeline</h2>
-          <div className="mt-3 rounded-xl border border-mist-200 bg-white p-4">
+          <div className="mt-3 rounded-2xl border border-mist-200 bg-white p-4">
             <h3 className="text-xs font-medium uppercase tracking-wide text-mist-600">Stage history</h3>
             <ol className="mt-2 space-y-1.5 text-sm">
               {transitions.map((t, i) => (

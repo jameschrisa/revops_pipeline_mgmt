@@ -38,7 +38,7 @@ export default function SettingsPage() {
       <div className="mt-6 grid grid-cols-1 gap-6 xl:grid-cols-2">
         <section aria-labelledby="sync-heading">
           <h2 id="sync-heading" className="text-lg font-semibold">CRM connection</h2>
-          <div className="mt-3 rounded-xl border border-mist-200 bg-white p-5">
+          <div className="mt-3 rounded-2xl border border-mist-200 bg-white p-5">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-navy-50 font-heading text-xs font-bold text-navy-700">SF</span>
@@ -66,7 +66,7 @@ export default function SettingsPage() {
           </div>
 
           <h2 className="mt-6 text-lg font-semibold">Stage mapping</h2>
-          <div className="mt-3 overflow-hidden rounded-xl border border-mist-200 bg-white">
+          <div className="mt-3 overflow-hidden rounded-2xl border border-mist-200 bg-white">
             <table className="w-full text-sm">
               <thead className="bg-mist-100 text-left text-xs uppercase tracking-wide text-mist-600">
                 <tr>
@@ -92,7 +92,7 @@ export default function SettingsPage() {
 
         <section aria-labelledby="config-heading">
           <h2 id="config-heading" className="text-lg font-semibold">Workspace configuration</h2>
-          <div className="mt-3 overflow-hidden rounded-xl border border-mist-200 bg-white">
+          <div className="mt-3 overflow-hidden rounded-2xl border border-mist-200 bg-white">
             <table className="w-full text-sm">
               <thead className="bg-mist-100 text-left text-xs uppercase tracking-wide text-mist-600">
                 <tr>
@@ -115,7 +115,7 @@ export default function SettingsPage() {
           </div>
 
           <h2 className="mt-6 text-lg font-semibold">API access</h2>
-          <div className="mt-3 rounded-xl border border-mist-200 bg-white p-5 text-sm">
+          <div className="mt-3 rounded-2xl border border-mist-200 bg-white p-5 text-sm">
             <p className="text-navy-700">
               REST API at <code className="rounded bg-mist-100 px-1.5 py-0.5 font-data text-xs">/api/v1</code> with bearer-token auth.
             </p>

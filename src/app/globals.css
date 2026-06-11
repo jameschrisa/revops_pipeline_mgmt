@@ -41,7 +41,8 @@
 }
 
 body {
-  @apply bg-mist-50 text-navy-900 font-body antialiased;
+  @apply text-navy-900 font-body antialiased;
+  background-color: #f2f5fa;
 }
 
 h1, h2, h3, h4, h5, h6 {

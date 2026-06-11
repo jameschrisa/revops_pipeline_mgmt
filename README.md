@@ -31,7 +31,7 @@ the spec without touching the engines or UI.
 ```bash
 npm install
 npm run dev
-# open http://localhost:3000 → "Enter demo workspace"
+# open http://localhost:3000 — lands directly on the dashboard
 ```
 
 No environment variables required — the demo workspace ("Meridian Labs") generates

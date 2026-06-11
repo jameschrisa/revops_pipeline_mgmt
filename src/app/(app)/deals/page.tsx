@@ -68,7 +68,7 @@ export default async function DealsPage({
         ))}
       </div>
 
-      <div className="mt-4 overflow-hidden rounded-xl border border-mist-200 bg-white">
+      <div className="mt-4 overflow-hidden rounded-2xl border border-mist-200 bg-white">
         <table className="w-full text-sm">
           <thead className="bg-mist-100 text-left text-xs uppercase tracking-wide text-mist-600">
             <tr>

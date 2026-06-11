@@ -52,7 +52,7 @@ export default async function ForecastPage({
             <Link
               key={p}
               href={`/forecast?period=${p}&dimension=${dimension}`}
-              className={`rounded-lg px-3.5 py-1.5 font-data ${period === p ? "bg-navy-800 text-white" : "bg-white ring-1 ring-mist-200 hover:bg-mist-100"}`}
+              className={`rounded-full px-3.5 py-1.5 font-data ${period === p ? "bg-navy-800 text-white" : "bg-white ring-1 ring-mist-200 hover:bg-mist-100"}`}
             >
               {p}
             </Link>
@@ -88,7 +88,7 @@ export default async function ForecastPage({
         <section className="mt-8" aria-labelledby="history-heading">
           <h2 id="history-heading" className="text-lg font-semibold">Forecast movement this quarter</h2>
           <p className="mt-1 text-sm text-mist-600">Weekly forecast snapshots — commit firms up as the quarter progresses.</p>
-          <div className="mt-3 rounded-xl border border-mist-200 bg-white p-4">
+          <div className="mt-3 rounded-2xl border border-mist-200 bg-white p-4">
             <ForecastHistoryChart data={history} />
           </div>
         </section>
@@ -109,10 +109,10 @@ export default async function ForecastPage({
             ))}
           </div>
         </div>
-        <div className="mt-3 rounded-xl border border-mist-200 bg-white p-4">
+        <div className="mt-3 rounded-2xl border border-mist-200 bg-white p-4">
           <SegmentBarChart data={segments} />
         </div>
-        <div className="mt-4 overflow-hidden rounded-xl border border-mist-200 bg-white">
+        <div className="mt-4 overflow-hidden rounded-2xl border border-mist-200 bg-white">
           <table className="w-full text-sm">
             <thead className="bg-mist-100 text-left text-xs uppercase tracking-wide text-mist-600">
               <tr>

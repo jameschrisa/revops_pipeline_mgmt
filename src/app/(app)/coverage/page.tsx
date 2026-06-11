@@ -39,7 +39,7 @@ export default async function CoveragePage({
             <Link
               key={p}
               href={`/coverage?period=${p}&dimension=${dimension}`}
-              className={`rounded-lg px-3.5 py-1.5 font-data ${period === p ? "bg-navy-800 text-white" : "bg-white ring-1 ring-mist-200 hover:bg-mist-100"}`}
+              className={`rounded-full px-3.5 py-1.5 font-data ${period === p ? "bg-navy-800 text-white" : "bg-white ring-1 ring-mist-200 hover:bg-mist-100"}`}
             >
               {p}
             </Link>
@@ -48,7 +48,7 @@ export default async function CoveragePage({
       </div>
 
       {below.length > 0 ? (
-        <div className="mt-5 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800">
+        <div className="mt-5 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800">
           <strong>{below.length} segment{below.length > 1 ? "s" : ""} below {TARGET_COVERAGE_RATIO.toFixed(1)}x coverage.</strong>{" "}
           Largest gap: {below[0].name} needs {moneyCompact(below[0].gap)} more weighted pipeline to reach target.
         </div>
@@ -68,7 +68,7 @@ export default async function CoveragePage({
 
       <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
         {segments.map((s) => (
-          <div key={s.name} className="rounded-xl border border-mist-200 bg-white p-5">
+          <div key={s.name} className="rounded-2xl border border-mist-200 bg-white p-5">
             <div className="flex items-center justify-between">
               <h2 className="font-heading font-semibold">{s.name}</h2>
               <span className={`rounded-full px-2.5 py-1 font-data text-sm font-semibold ring-1 ring-inset ${ratioStyles(s.coverageRatio)}`}>
