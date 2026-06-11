@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@theme {
+  /* F3 Insights brand palette — navy / mist / gold */
+  --color-navy-50: #f0f4fa;
+  --color-navy-100: #dee7f4;
+  --color-navy-200: #bfcfea;
+  --color-navy-300: #8facdb;
+  --color-navy-400: #5e89c9;
+  --color-navy-500: #3568b5;
+  --color-navy-600: #265397;
+  --color-navy-700: #1b4178;
+  --color-navy-800: #12305a;
+  --color-navy-900: #0b1f3a;
+  --color-navy-950: #081226;
+
+  --color-mist-50: #f7fafc;
+  --color-mist-100: #eef3f7;
+  --color-mist-200: #dfe8ef;
+  --color-mist-300: #c8d6e1;
+  --color-mist-400: #a9bdcd;
+  --color-mist-500: #8aa3b7;
+  --color-mist-600: #6b8499;
+
+  --color-gold-50: #fcf8ec;
+  --color-gold-100: #f8f0d5;
+  --color-gold-200: #f0dfa3;
+  --color-gold-300: #e5cb72;
+  --color-gold-400: #d9b644;
+  --color-gold-500: #c9a227;
+  --color-gold-600: #a8851b;
+  --color-gold-700: #856814;
+
+  --color-health-good: #1e8e5a;
+  --color-health-warn: #d97706;
+  --color-health-risk: #dc2626;
+
+  --font-heading: var(--font-hanken), system-ui, sans-serif;
+  --font-body: var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+}
+
+body {
+  @apply bg-mist-50 text-navy-900 font-body antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-heading;
+}
+
+.font-data {
+  @apply font-mono tabular-nums;
+}
