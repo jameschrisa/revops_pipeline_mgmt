@@ -19,11 +19,15 @@ const typeLabels = {
 export function AlertFeed({ initialAlerts }: { initialAlerts: Alert[] }) {
   const [alerts, setAlerts] = useState(initialAlerts);
   const [filter, setFilter] = useState<"active" | "snoozed" | "dismissed">("active");
+  const [leaving, setLeaving] = useState<Set<string>>(new Set());
 
-  async function update(id: string, status: "snoozed" | "dismissed" | "active") {
-    const snoozedUntil =
-      status === "snoozed" ? new Date(Date.now() + 7 * 86_400_000).toISOString() : null;
+  async function persist(id: string, status: "snoozed" | "dismissed" | "active", snoozedUntil: string | null) {
     setAlerts((prev) => prev.map((a) => (a.id === id ? { ...a, status, snoozedUntil } : a)));
+    setLeaving((prev) => {
+      const next = new Set(prev);
+      next.delete(id);
+      return next;
+    });
     await fetch(`/api/v1/alerts/${id}`, {
       method: "PATCH",
       headers: {
@@ -32,6 +36,14 @@ export function AlertFeed({ initialAlerts }: { initialAlerts: Alert[] }) {
       },
       body: JSON.stringify({ status, snoozed_until: snoozedUntil }),
     }).catch(() => {});
+  }
+
+  function update(id: string, status: "snoozed" | "dismissed" | "active") {
+    const snoozedUntil =
+      status === "snoozed" ? new Date(Date.now() + 7 * 86_400_000).toISOString() : null;
+    // Cards leave the current filter view — play the exit, then commit the change.
+    setLeaving((prev) => new Set(prev).add(id));
+    window.setTimeout(() => persist(id, status, snoozedUntil), 260);
   }
 
   const visible = alerts.filter((a) => a.status === filter);
@@ -63,8 +75,12 @@ export function AlertFeed({ initialAlerts }: { initialAlerts: Alert[] }) {
             {filter === "active" ? "No active alerts — pipeline looks healthy." : `No ${filter} alerts.`}
           </div>
         ) : (
-          visible.map((a) => (
-            <div key={a.id} className="rounded-2xl border border-mist-200 bg-white p-4">
+          visible.map((a, i) => (
+            <div
+              key={a.id}
+              className={`rounded-2xl border border-mist-200 bg-white p-4 ${leaving.has(a.id) ? "anim-card-out" : "anim-rise"}`}
+              style={{ "--i": Math.min(i, 6) } as React.CSSProperties}
+            >
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div className="min-w-0">
                   <div className="flex flex-wrap items-center gap-2">

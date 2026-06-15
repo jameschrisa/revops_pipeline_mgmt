@@ -60,7 +60,7 @@ export default function DashboardPage() {
   return (
     <div>
       {/* Greeting header */}
-      <div className="flex flex-wrap items-end justify-between gap-4">
+      <div className="anim-rise flex flex-wrap items-end justify-between gap-4" style={{ "--i": 0 } as React.CSSProperties}>
         <div>
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{greeting()}, James</h1>
           <p className="mt-2 text-sm text-mist-600">
@@ -70,14 +70,14 @@ export default function DashboardPage() {
         </div>
         <Link
           href="/forecast"
-          className="rounded-full bg-navy-700 px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-colors hover:bg-navy-600"
+          className="rounded-full bg-navy-700 px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-all duration-150 hover:-translate-y-px hover:bg-navy-600 hover:shadow-md active:translate-y-0 active:scale-[0.98]"
         >
           View forecast →
         </Link>
       </div>
 
       {/* Toolbar */}
-      <div className="mt-5 flex flex-wrap items-center gap-2">
+      <div className="anim-rise mt-5 flex flex-wrap items-center gap-2" style={{ "--i": 1 } as React.CSSProperties}>
         <span className="rounded-full border border-mist-200 bg-white px-3.5 py-1.5 font-data text-xs text-navy-700">
           {CURRENT_QUARTER}
         </span>
@@ -95,7 +95,7 @@ export default function DashboardPage() {
       {/* Bento row 1 */}
       <div className="mt-6 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
         {/* Pipeline health */}
-        <section className="rounded-3xl border border-mist-200/70 bg-white p-6 shadow-sm shadow-navy-900/5" aria-labelledby="health-heading">
+        <section className="anim-rise rounded-3xl border border-mist-200/70 bg-white p-6 shadow-sm shadow-navy-900/5" style={{ "--i": 2 } as React.CSSProperties} aria-labelledby="health-heading">
           <h2 id="health-heading" className="text-xl font-bold">Pipeline health</h2>
           <p className="mt-2 text-sm leading-relaxed text-mist-600">
             {alerts.length} alerts across {moneyCompact(atRiskValue)} of at-risk pipeline.
@@ -105,7 +105,7 @@ export default function DashboardPage() {
           </Link>
           <div className="mt-6">
             <div className="flex h-3.5 overflow-hidden rounded-full bg-mist-100" role="img" aria-label={`${healthyPct}% of deals healthy`}>
-              <div className="rounded-full bg-navy-600" style={{ width: `${healthyPct}%` }} />
+              <div className="anim-grow-x rounded-full bg-navy-600" style={{ width: `${healthyPct}%` }} />
             </div>
             <div className="mt-3 flex items-center gap-4 text-xs">
               <span className="flex items-center gap-1.5 text-navy-700">
@@ -119,7 +119,7 @@ export default function DashboardPage() {
         </section>
 
         {/* Forecast trend mini-bars */}
-        <section className="rounded-3xl border border-mist-200/70 bg-white p-6 shadow-sm shadow-navy-900/5" aria-labelledby="trend-heading">
+        <section className="anim-rise rounded-3xl border border-mist-200/70 bg-white p-6 shadow-sm shadow-navy-900/5" style={{ "--i": 3 } as React.CSSProperties} aria-labelledby="trend-heading">
           <h2 id="trend-heading" className="text-xl font-bold">Forecast trend</h2>
           <p className="mt-1 text-xs text-mist-600">Most likely, last 5 weeks</p>
           <div className="mt-5 flex h-36 items-end justify-between gap-2.5">
@@ -135,8 +135,8 @@ export default function DashboardPage() {
                   ) : null}
                   <div className="flex w-full flex-1 items-end rounded-2xl bg-mist-100">
                     <div
-                      className={`w-full rounded-2xl ${isPeak ? "bg-gold-400" : i === trendPoints.length - 1 ? "bg-navy-600" : "bg-navy-300"}`}
-                      style={{ height: `${h}%` }}
+                      className={`anim-grow-y w-full rounded-2xl ${isPeak ? "bg-gold-400" : i === trendPoints.length - 1 ? "bg-navy-600" : "bg-navy-300"}`}
+                      style={{ height: `${h}%`, "--i": i } as React.CSSProperties}
                       role="img"
                       aria-label={`${shortDate(p.date)}: ${moneyCompact(p.mostLikely)}`}
                     />
@@ -151,7 +151,7 @@ export default function DashboardPage() {
         </section>
 
         {/* Insight card (solid) */}
-        <section className="rounded-3xl bg-navy-700 p-6 text-white shadow-md shadow-navy-900/20" aria-labelledby="insight-heading">
+        <section className="anim-rise rounded-3xl bg-navy-700 p-6 text-white shadow-md shadow-navy-900/20" style={{ "--i": 4 } as React.CSSProperties} aria-labelledby="insight-heading">
           <h2 id="insight-heading" className="text-xl font-bold">Forecast insight</h2>
           <p className="mt-3 text-sm leading-relaxed text-navy-100">
             Most likely lands at <strong className="text-white">{moneyCompact(scenarios.mostLikely)}</strong> for{" "}
@@ -169,7 +169,7 @@ export default function DashboardPage() {
         </section>
 
         {/* Recent activity */}
-        <section className="rounded-3xl border border-mist-200/70 bg-white p-6 shadow-sm shadow-navy-900/5" aria-labelledby="activity-heading">
+        <section className="anim-rise rounded-3xl border border-mist-200/70 bg-white p-6 shadow-sm shadow-navy-900/5" style={{ "--i": 5 } as React.CSSProperties} aria-labelledby="activity-heading">
           <h2 id="activity-heading" className="text-xl font-bold">Recent activity</h2>
           <p className="mt-1 text-xs text-mist-600">Latest touches synced from CRM</p>
           <ol className="mt-4 space-y-0">
@@ -202,7 +202,7 @@ export default function DashboardPage() {
       {/* Bento row 2 */}
       <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
         {/* Deals needing attention */}
-        <section className="rounded-3xl border border-mist-200/70 bg-white p-6 shadow-sm shadow-navy-900/5" aria-labelledby="atrisk-heading">
+        <section className="anim-rise rounded-3xl border border-mist-200/70 bg-white p-6 shadow-sm shadow-navy-900/5" style={{ "--i": 6 } as React.CSSProperties} aria-labelledby="atrisk-heading">
           <div className="flex items-baseline justify-between">
             <h2 id="atrisk-heading" className="text-xl font-bold">Needs attention</h2>
             <Link href="/deals" className="text-xs font-medium text-navy-600 hover:underline">All →</Link>
@@ -222,7 +222,7 @@ export default function DashboardPage() {
                 </div>
                 <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-mist-100">
                   <div
-                    className={`h-full rounded-full ${d.score.band === "risk" ? "bg-red-400" : d.score.band === "warn" ? "bg-amber-400" : "bg-emerald-400"}`}
+                    className={`anim-grow-x h-full rounded-full ${d.score.band === "risk" ? "bg-red-400" : d.score.band === "warn" ? "bg-amber-400" : "bg-emerald-400"}`}
                     style={{ width: `${d.score.score}%` }}
                   />
                 </div>
@@ -232,7 +232,7 @@ export default function DashboardPage() {
         </section>
 
         {/* Pipeline value chart (wide) */}
-        <section className="rounded-3xl border border-mist-200/70 bg-white p-6 shadow-sm shadow-navy-900/5 md:col-span-2" aria-labelledby="value-heading">
+        <section className="anim-rise rounded-3xl border border-mist-200/70 bg-white p-6 shadow-sm shadow-navy-900/5 md:col-span-2" style={{ "--i": 7 } as React.CSSProperties} aria-labelledby="value-heading">
           <div className="flex flex-wrap items-baseline justify-between gap-2">
             <div>
               <h2 id="value-heading" className="text-xl font-bold">Pipeline value</h2>
@@ -249,7 +249,7 @@ export default function DashboardPage() {
         </section>
 
         {/* Owner leaderboard */}
-        <section className="rounded-3xl border border-mist-200/70 bg-white p-6 shadow-sm shadow-navy-900/5" aria-labelledby="owners-heading">
+        <section className="anim-rise rounded-3xl border border-mist-200/70 bg-white p-6 shadow-sm shadow-navy-900/5" style={{ "--i": 8 } as React.CSSProperties} aria-labelledby="owners-heading">
           <h2 id="owners-heading" className="text-xl font-bold">Top pipeline owners</h2>
           <p className="mt-1 text-xs text-mist-600">By open pipeline value</p>
           <ul className="mt-4 space-y-3.5">

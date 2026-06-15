@@ -24,6 +24,17 @@ const MIST = "#a9bdcd";
 
 const axisStyle = { fontSize: 11, fill: "#6b8499", fontFamily: "var(--font-plex-mono)" };
 
+// Disable chart draw-in when the user prefers reduced motion.
+const animate =
+  typeof window === "undefined" ||
+  !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const anim = {
+  isAnimationActive: animate,
+  animationDuration: 700,
+  animationEasing: "ease-out" as const,
+  animationBegin: 150,
+};
+
 export function ForecastHistoryChart({
   data,
 }: {
@@ -37,9 +48,9 @@ export function ForecastHistoryChart({
         <YAxis tick={axisStyle} tickFormatter={(v: number) => moneyCompact(v)} width={56} />
         <Tooltip formatter={(v) => moneyCompact(Number(v))} labelFormatter={(l) => shortDate(String(l))} />
         <Legend wrapperStyle={{ fontSize: 12 }} />
-        <Line type="monotone" dataKey="bestCase" name="Best case" stroke={MIST} strokeWidth={2} dot={false} />
-        <Line type="monotone" dataKey="mostLikely" name="Most likely" stroke={GOLD} strokeWidth={2.5} dot={false} />
-        <Line type="monotone" dataKey="commit" name="Commit" stroke={NAVY} strokeWidth={2} dot={false} />
+        <Line {...anim} type="monotone" dataKey="bestCase" name="Best case" stroke={MIST} strokeWidth={2} dot={false} />
+        <Line {...anim} type="monotone" dataKey="mostLikely" name="Most likely" stroke={GOLD} strokeWidth={2.5} dot={false} />
+        <Line {...anim} type="monotone" dataKey="commit" name="Commit" stroke={NAVY} strokeWidth={2} dot={false} />
       </LineChart>
     </ResponsiveContainer>
   );
@@ -68,8 +79,8 @@ export function PipelineAreaChart({
         <YAxis tick={axisStyle} tickFormatter={(v: number) => moneyCompact(v)} width={56} />
         <Tooltip formatter={(v) => moneyCompact(Number(v))} labelFormatter={(l) => shortDate(String(l))} />
         <Legend wrapperStyle={{ fontSize: 12 }} />
-        <Area type="monotone" dataKey="total" name="Total pipeline" stroke={BLUE} fill="url(#gTotal)" strokeWidth={2} />
-        <Area type="monotone" dataKey="weighted" name="Weighted pipeline" stroke={GOLD} fill="url(#gWeighted)" strokeWidth={2} />
+        <Area {...anim} type="monotone" dataKey="total" name="Total pipeline" stroke={BLUE} fill="url(#gTotal)" strokeWidth={2} />
+        <Area {...anim} type="monotone" dataKey="weighted" name="Weighted pipeline" stroke={GOLD} fill="url(#gWeighted)" strokeWidth={2} />
       </AreaChart>
     </ResponsiveContainer>
   );
@@ -93,7 +104,7 @@ export function MonthlyBarChart({
         <XAxis dataKey="month" tick={axisStyle} tickFormatter={monthLabel} />
         <YAxis tick={axisStyle} tickFormatter={(v: number) => `${v}${suffix}`} />
         <Tooltip formatter={(v) => [`${v}${suffix}`, name]} labelFormatter={(l) => monthLabel(String(l))} />
-        <Bar dataKey="value" name={name} fill={color} radius={[3, 3, 0, 0]} />
+        <Bar {...anim} dataKey="value" name={name} fill={color} radius={[3, 3, 0, 0]} />
       </BarChart>
     </ResponsiveContainer>
   );
@@ -113,7 +124,7 @@ export function StageFunnelChart({
         <XAxis type="number" domain={[0, 100]} tick={axisStyle} tickFormatter={(v: number) => `${v}%`} />
         <YAxis type="category" dataKey="stage" tick={{ ...axisStyle, fontSize: 12 }} width={88} />
         <Tooltip formatter={(v, _n, item) => [`${v}% advance (${item?.payload?.entered ?? "—"} entered)`, "Conversion"]} />
-        <Bar dataKey="pct" name="Stage conversion" radius={[0, 3, 3, 0]} label={{ position: "right", fontSize: 11, formatter: (v: number) => `${v}%` }}>
+        <Bar {...anim} dataKey="pct" name="Stage conversion" radius={[0, 3, 3, 0]} label={{ position: "right", fontSize: 11, formatter: (v: number) => `${v}%` }}>
           {chartData.map((_, i) => (
             <Cell key={i} fill={colors[i % colors.length]} />
           ))}
@@ -136,9 +147,9 @@ export function SegmentBarChart({
         <YAxis tick={axisStyle} tickFormatter={(v: number) => moneyCompact(v)} width={56} />
         <Tooltip formatter={(v) => moneyCompact(Number(v))} />
         <Legend wrapperStyle={{ fontSize: 12 }} />
-        <Bar dataKey="commit" name="Commit" fill={NAVY} radius={[3, 3, 0, 0]} />
-        <Bar dataKey="mostLikely" name="Most likely" fill={GOLD} radius={[3, 3, 0, 0]} />
-        <Bar dataKey="bestCase" name="Best case" fill={MIST} radius={[3, 3, 0, 0]} />
+        <Bar {...anim} dataKey="commit" name="Commit" fill={NAVY} radius={[3, 3, 0, 0]} />
+        <Bar {...anim} dataKey="mostLikely" name="Most likely" fill={GOLD} radius={[3, 3, 0, 0]} />
+        <Bar {...anim} dataKey="bestCase" name="Best case" fill={MIST} radius={[3, 3, 0, 0]} />
       </BarChart>
     </ResponsiveContainer>
   );
